@@ -1,0 +1,4 @@
+
+class HandleAttribute:
+    pass
+

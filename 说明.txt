@@ -1,0 +1,88 @@
+
+小项目用于演示：
+
+【接口自动化】
+
+1、接口框架介绍
+    python + request + unittest + HTMLTestRunner
+    python + request + pytest + allure
+
+2、框架设计思路：数据驱动 + 结构分层(可读性、可维护性、可扩展性)
+    数据驱动：将数据与代码分离，接口调用行为一致，针对不同的参数组合驱动不同的测试场景，减少代码冗余
+    结构分层：数据层 + 用例层 + 逻辑层
+            数据层：测试数据支持，Excel、CSV
+            用例层：用例执行(执行前置SQL、参数替换、执行接口前保存需要断言的数据、发送请求(get/post)、全局变量提取、接口断言、从响应结果中提取数据、数据库断言)
+            逻辑层：公用的方法的封装与提取。excel、log、数据库、报告、邮件、登录 、提取数据、比较数据等
+
+3、unittest & pytest
+    1. 用例设计规则区别
+        unittest：
+            测试文件必须 import unittest、测试类必须继承 unittest.TestCase、测试函数必须“test_”开头，测试类必须有 unittest.main()方法
+        pytest：
+            测试文件名必须“test_”开头或者“_test”结尾、测试类名必须以“Test”开头、测试函数必须以"test"开头，测试类里面不能使用“init”方法
+        总结：pytest是基于unittest衍生出来的新的测试框架，使用起来相对于 unittest 来说更简单、效率更高，pytest兼容unittest测试用例，但是反过来 unittest 不兼容 pytest
+
+    2. 断言对比
+		 unittest:
+			unittest断言需要记很多断言格式
+			assertEqual(a,b)：判断a和b是否相等
+			assertNotEqual(a,b)：判断a不等于b
+			assertTrue(a)：判断a是否为Ture
+			assertFalse(a)：判断a是否为False
+			assertIn(a,b)：a包含在b里面
+			assertNotIn(a,b)：a不包含在b里面
+		 pytest:
+			pytest只需要用assert来断言，assert后面加需要断言的条件
+			assert a==b：判断a和b是否相等
+			assert a!=b：判断a不等于b
+			assert 'h' in 'hello'：a包含在b里面
+			assert 'h' not in 'hello'：a不包含在b里面
+			assert f() == 4：判断 f() 方法返回值是否等于4
+			assert 5>6：判断 5 > 6 为真
+			assert not xx ：判断 xx 不为真
+
+	3. 前置后置
+		 unittest:
+			setup、teardown：函数级别（每个用例执行前后执行）
+			setupclass、teardownclass：类级别 （类里面所有用例开始前执行一次，所有用例执行完执行一次）
+			一般常用的是function和class
+		 pytest:
+			@pytest.fixture(scope='function')：函数级别(每个用例执行前后执行)
+			@pytest.fixture(scope='class')：类级别(类里面所有用例开始前执行一次，所有用例执行完执行一次)
+			@pytest.fixture(scope='module')：模块级别(整个.py全部用例开始前执行/全部用例执行完后执行)
+			@pytest.fixture(scope='package')：包级别
+			@pytest.fixture(scope='session')：会话级别
+			conftest中定义多个fixture，一个fixture可以是另一个fixture的前后置，期间还是用yield隔开前后置
+
+    4. 参数化
+		 unittest: ddt
+		 pytest: @pytest.mark.parametrize装饰器
+
+	5. 测试用例分类、顺序执行
+		 unittest:
+			默认执行全部用例，也可以通过加载testsuit，执行部分用例
+			用例名称可用1，2等标记，例：test_case1，test_case2
+		 pytest:
+			可以通过@pytest.mark来标记类和方法，pytest.main加入参数("-m")可以只运行标记的类和方法
+			安装:pip install pytest-ordering，在测试方法上加下面装饰器 @pytest.mark.last—最后一个执行 @pytest.mark.run(order=1)—第几个执行
+
+    6. 测试报告
+		 unittest: 使用HTMLTestRunnerNew库
+		 pytest: 通过pytest-html生成html格式报告,通过allure生成方案（很详细）
+
+	7. 失败重跑
+		 unittest: 无此功能
+		 pytest: pytest支持用例执行失败重跑，pytest-rerunfailures插件
+	总体来说，unittest用例格式复杂，兼容性无，插件少，二次开发方便。
+	          pytest更加方便快捷，用例格式简单，可以执行unittest风格的测试用例，无须修改unittest用例的任何代码，有较好的兼容性。
+	          pytest插件丰富，可用于用例出错重跑，测试报告详细，用力分类执行，断言方便，可用于设备并行执行，效率更高。
+   4> 测试数据总结
+      不同的测试数据放在不同位置
+		1、对于账号密码、邮箱配置，这种管全局的参数，可以用命令参数，单独抽出来，写的配置文件里(ini)
+		2、对于一次性消费的数据，比如注册，每次注册不一样的数，可用随机函数生成
+		3、对于一个接口有多组测试的参数，可参数化，数据放在yaml、text、json、excel
+		4、对于反复使用的数据，比如订单的各种状态需要造数据情况，可以放到数据库，每次数据初始化，用完后再清理
+		5.对于邮箱配置的一些参数，可以用ini配置文件
+		6、对于全部独立的接口项目，可以用数据驱动方式，用excel/csv管理测试用例
+		7、对于少量的静态数据，比如一个接口的测试有两三组，可以写在python脚本的开头，长时间不懂的数据是可以放置在脚本的。
+
