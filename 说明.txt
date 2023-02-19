@@ -14,7 +14,10 @@
             用例层：用例执行(执行前置SQL、参数替换、执行接口前保存需要断言的数据、发送请求(get/post)、全局变量提取、接口断言、从响应结果中提取数据、数据库断言)
             逻辑层：公用的方法的封装与提取。excel、log、数据库、报告、邮件、登录 、提取数据、比较数据等
 
-3、unittest & pytest
+3、 框架业务流程
+		编写用例 - 收集测试用例TestSuite - 执行测试用例TestRunner - 生成测试报告
+
+4、unittest & pytest
     1. 用例设计规则区别
         unittest：
             测试文件必须 import unittest、测试类必须继承 unittest.TestCase、测试函数必须“test_”开头，测试类必须有 unittest.main()方法
@@ -76,13 +79,36 @@
 	总体来说，unittest用例格式复杂，兼容性无，插件少，二次开发方便。
 	          pytest更加方便快捷，用例格式简单，可以执行unittest风格的测试用例，无须修改unittest用例的任何代码，有较好的兼容性。
 	          pytest插件丰富，可用于用例出错重跑，测试报告详细，用力分类执行，断言方便，可用于设备并行执行，效率更高。
-   4> 测试数据总结
-      不同的测试数据放在不同位置
-		1、对于账号密码、邮箱配置，这种管全局的参数，可以用命令参数，单独抽出来，写的配置文件里(ini)
-		2、对于一次性消费的数据，比如注册，每次注册不一样的数，可用随机函数生成
-		3、对于一个接口有多组测试的参数，可参数化，数据放在yaml、text、json、excel
-		4、对于反复使用的数据，比如订单的各种状态需要造数据情况，可以放到数据库，每次数据初始化，用完后再清理
-		5.对于邮箱配置的一些参数，可以用ini配置文件
-		6、对于全部独立的接口项目，可以用数据驱动方式，用excel/csv管理测试用例
-		7、对于少量的静态数据，比如一个接口的测试有两三组，可以写在python脚本的开头，长时间不懂的数据是可以放置在脚本的。
 
+5、 测试数据总结
+   不同的测试数据放在不同位置
+    1、对于账号密码、邮箱配置，这种管全局的参数，可以用命令参数，单独抽出来，写的配置文件里(ini)
+    2、对于一次性消费的数据，比如注册，每次注册不一样的数，可用随机函数生成
+    3、对于一个接口有多组测试的参数，可参数化，数据放在yaml、text、json、excel
+    4、对于反复使用的数据，比如订单的各种状态需要造数据情况，可以放到数据库，每次数据初始化，用完后再清理
+    5.对于邮箱配置的一些参数，可以用ini配置文件
+    6、对于全部独立的接口项目，可以用数据驱动方式，用excel/csv管理测试用例
+    7、对于少量的静态数据，比如一个接口的测试有两三组，可以写在python脚本的开头，长时间不懂的数据是可以放置在脚本的。
+
+6、 Jenkins
+		1、安装 Jenkins
+		2、创建 JOB - 添加构建步骤(windows batch command / shell) - python脚本
+		3、新增节点 - 配置节点(工程目录、用法、启动方法) - 勾选(windows[Java web start]或Linux[Launch slave agents via SSH]的启动方法) - 保存节点
+		4、windows[Java web start] - 系统管理(Configure Global Security) - 勾选‘随机选取’和Java Web Start Agent - 点应用保存 - 回到配置节点启动Java web start
+		5、节点未在线状态 - 点节点，本地安装 slave-agent - 点Launch并下载运行 - 双击 slave-agent.jnlp 启动 - 回到jenkins首页该节点就显示在线
+		6、新建 job
+			1.新建的Job，指定到刚才新增的这个节点机器上运行,勾选Restrict where this project can be run
+			2.Label Expression这个地方输入刚才节点机器的名称：yoyo
+			一、如何设置定时任务？
+				一、定时构建语法
+				二、Build periodically
+				三、红字提示
+				四、构建时间
+			二、Poll SCM
+				1.Poll SCM:定时检查源码变更（根据SCM软件的版本号），如果有更新就checkout最新code下来，然后执行构建动作
+				2.如果我想每隔30分钟检查一次源码变化，有变化就执行
+			三 如何结合 git 拉去代码？
+				1.源码管理里面勾选Git选项
+				2.Repository URL这个地址就是我git仓库的地址
+				3.Credentials 点 add 添加 git
+				4.Branch Specifier (blank for 'any') 这个地方的址是分支名，如果没指定其它就默认： */master */master*/
