@@ -4,7 +4,8 @@ import re
 import requests
 from pprint import pprint
 
-class LoginSession:
+
+class LoginSess:
     def __init__(self):
         self.s = requests.session()
 
@@ -12,8 +13,8 @@ class LoginSession:
 
         RE_CSRF = re.compile(r'csrf_token" value="(?P<csrf_token>[a-z\d]+)"')
 
-        login_url = "http://ac-sit.pythontest.aqara.com/web/login?redirect=http://ac-sit.pythontest.aqara.com/sso/login?system_name=xls&system_url=http:%2F%2Fzzds.pythontest.aqara.com%2F%23%2F&redirect=http:%2F%2Fzzds.pythontest.aqara.com%2F%23%2F"
-        redirect_url = 'http://ac-sit.pythontest.aqara.com/sso/login?system_name=xls&system_url=http:%2F%2Fzzds.pythontest.aqara.com%2F%23%2F&redirect=http:%2F%2Fzzds.pythontest.aqara.com%2F%23%2F'
+        login_url = ""
+        redirect_url = ''
 
         # 登录地址
         resp = self.s.get(login_url)
@@ -23,22 +24,22 @@ class LoginSession:
 
         data = {
             'csrf_token': csrf,
-            'login': 'jiagang.feng-a1777@aqara.com',
+            'login': '',
             'password': 'Feng666666',
             'redirect': redirect_url
         }
 
         # 登陆提交
-        resp = self.s.post('http://ac-sit.pythontest.aqara.com/web/login', data=data)
+        resp = self.s.post('', data=data)
         # pprint(resp)
         last_url = resp.request.url
         print(last_url)
         params = last_url.split('?')[-1]
-        url = f'http://zzds.pythontest.aqara.com/web/ui_login?{params}'
+        url = f'?{params}'
         resp = self.s.get(url)
         print(resp)
         return self.s
 
 # A = LoginSession()
-# res = A.login().get("http://zzds.pythontest.aqara.com/web/api/ui/menus")
+# res = A.login().get("")
 # print(res.status_code)

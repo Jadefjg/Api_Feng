@@ -5,6 +5,7 @@ from api.login_session import LoginSess
 from test_tools.handle_log import Log
 from conf.readConf import HandleIni
 
+
 class ZZDS_login(unittest.TestCase):
 
     def setUp(self):
@@ -14,13 +15,13 @@ class ZZDS_login(unittest.TestCase):
 
     def test_login(self):
 
-        #url = 'http://zzds.pythontest.aqara.com/web/login'
+        #url = ''
 
         api_url = '/web/login'
         url = self.HandleIni.host_url() + api_url
         data = {
-            'login': 'jiagang.feng-a1777@aqara.com',
-            'password': 'Feng666666',
+            'login': '',
+            'password': '',
         }
 
         resp = self.sess.login().post(url=url, json=data)
@@ -31,6 +32,7 @@ class ZZDS_login(unittest.TestCase):
 
     def tearDown(self):
         pass
+
 
 if __name__=="__main__":
     unittest.main()

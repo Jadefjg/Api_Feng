@@ -1,18 +1,19 @@
 
 import unittest
-from test_tools.handle_log import test_log
-from api.login_session import LoginSession
+from test_tools.handle_log import Log
+from api.login_session import LoginSess
 from conf.readConf import HandleIni
+
 
 class ZZDS_login(unittest.TestCase):
 
     def setUp(self,*args,**kwargs):
-        self.log = test_log()
-        self.sess = LoginSession()
+        self.log = Log()
+        self.sess = LoginSess()
         self.HandleIni = HandleIni()
 
     def test_logout(self):
-        # url = "http://zzds.pythontest.aqara.com/web/ui_logout"
+        # url = ""
         # api_url = '/web/ui_logout'
         # url = self.HandleIni.host_url() + api_url
 
@@ -27,6 +28,7 @@ class ZZDS_login(unittest.TestCase):
 
     def tearDown(self):
         pass
+
 
 if __name__=="__main__":
     unittest.main()

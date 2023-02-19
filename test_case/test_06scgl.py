@@ -12,6 +12,7 @@ class scgl(unittest.TestCase):
         self.sess = LoginSess()
         self.log = Log()
         self.HandleIni = HandleIni()
+
     # 素材信息
     def test_create_sucai(self):
         api_url = '/web/api/material-information'
@@ -22,7 +23,7 @@ class scgl(unittest.TestCase):
             "open_range_ids": None,
             "description":"好的好的",
             "state":"draft",
-            "material":"[{\"userId\":16,\"userName\":\"冯加刚\",\"uid\":\"22977938123957520481020412747797\",\"size\":27.93,\"name\":\"mi.jpeg\",\"type\":\"image/jpeg\",\"status\":\"done\",\"url\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/mi1642489250628.jpeg\",\"key\":\"/ZZDS/mi1642489250628.jpeg\",\"rename\":\"mi1642489250628.jpeg\",\"extName\":\"jpeg\",\"thumbnailUrl\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/mi1642489250628.jpeg\",\"createTime\":\"2022-01-18 16:00:50\"}]"
+            "material":"[{\"userId\":16,\"userName\":\"\",\"uid\":\"22977938123957520481020412747797\",\"size\":27.93,\"name\":\"mi.jpeg\",\"type\":\"image/jpeg\",\"status\":\"done\",\"url\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/mi1642489250628.jpeg\",\"key\":\"/ZZDS/mi1642489250628.jpeg\",\"rename\":\"mi1642489250628.jpeg\",\"extName\":\"jpeg\",\"thumbnailUrl\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/mi1642489250628.jpeg\",\"createTime\":\"2022-01-18 16:00:50\"}]"
         }
 
         resp = self.sess.login().post(url=url,json=data)
@@ -69,6 +70,7 @@ class scgl(unittest.TestCase):
 
     def tearDown(self):
         pass
+
 
 if __name__=="__main__":
     unittest.main()

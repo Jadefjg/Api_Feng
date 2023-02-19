@@ -32,6 +32,7 @@ class HandlePhone:
                 # 返回未注册的手机号
                 return phone
 
+
 test = HandlePhone()
 result = test.get_phone()
 print(result)

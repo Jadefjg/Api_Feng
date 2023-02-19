@@ -1,8 +1,0 @@
-[2022-01-17 10:26:13,260] - logger.py] - INFO: 创建招商的ID：False
-[2022-01-17 10:26:13,268] - logger.py] - INFO: {"code": 4000, "status": 400, "message": "ERROR:  insert or update on table \"shang_join_information\" violates foreign key constraint \"shang_join_information_channel_id_fkey\"\nDETAIL:  Key (channel_id)=(18) is not present in table \"shang_channel\".\n"}
-[2022-01-17 10:26:14,775] - logger.py] - INFO: 创建招商的ID：False
-[2022-01-17 10:26:14,777] - logger.py] - INFO: {"code": 4000, "status": 400, "message": "ERROR:  insert or update on table \"shang_join_information\" violates foreign key constraint \"shang_join_information_channel_id_fkey\"\nDETAIL:  Key (channel_id)=(18) is not present in table \"shang_channel\".\n"}
-[2022-01-17 20:16:39,572] - logger.py] - INFO: 创建招商的ID：[92]
-[2022-01-17 20:16:39,583] - logger.py] - INFO: {"code": 0, "status": 200, "message": "SUCCESS", "data": [{"id": 92}]}
-[2022-01-17 20:16:40,519] - logger.py] - INFO: 创建招商的ID：[93]
-[2022-01-17 20:16:40,521] - logger.py] - INFO: {"code": 0, "status": 200, "message": "SUCCESS", "data": [{"id": 93}]}

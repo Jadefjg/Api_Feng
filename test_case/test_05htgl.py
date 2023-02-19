@@ -46,9 +46,9 @@ class Htgl(unittest.TestCase):
         resp_status = resp.status_code
         self.assertEqual(200,resp_status)
 
-    # 状态：禁用 - 启用：http://zzds.pythontest.aqara.com/web/call/setting_template_application_enable_for_setting_template_application
+    # 状态：禁用 - 启用：
 
-    # 状态：启用 - 禁用：http://zzds.pythontest.aqara.com/web/call/setting_template_application_disable_for_setting_template_application
+    # 状态：启用 - 禁用：
 
 
     # 合同模板配置
@@ -97,7 +97,7 @@ class Htgl(unittest.TestCase):
             "name":"test合同01",
             "a_category":"personal",
             "b_category":"personal",
-            "attachment":"[{\"userId\":16,\"userName\":\"冯加刚\",\"uid\":\"14713312054055167364821866588737\",\"size\":2908.71,\"name\":\"打印机指引.pdf\",\"type\":\"application/pdf\",\"status\":\"done\",\"url\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/%E6%89%93%E5%8D%B0%E6%9C%BA%E6%8C%87%E5%BC%951642476841537.pdf\",\"key\":\"/ZZDS/打印机指引1642476841537.pdf\",\"rename\":\"打印机指引1642476841537.pdf\",\"extName\":\"pdf\",\"thumbnailUrl\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/%E6%89%93%E5%8D%B0%E6%9C%BA%E6%8C%87%E5%BC%951642476841537.pdf\",\"createTime\":\"2022-01-18 11:34:08\"}]",
+            "attachment":"[{\"userId\":16,\"userName\":\"\",\"uid\":\"14713312054055167364821866588737\",\"size\":2908.71,\"name\":\"打印机指引.pdf\",\"type\":\"application/pdf\",\"status\":\"done\",\"url\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/%E6%89%93%E5%8D%B0%E6%9C%BA%E6%8C%87%E5%BC%951642476841537.pdf\",\"key\":\"/ZZDS/打印机指引1642476841537.pdf\",\"rename\":\"打印机指引1642476841537.pdf\",\"extName\":\"pdf\",\"thumbnailUrl\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/%E6%89%93%E5%8D%B0%E6%9C%BA%E6%8C%87%E5%BC%951642476841537.pdf\",\"createTime\":\"2022-01-18 11:34:08\"}]",
             "storage":"",
             "application_ids":[
                 286
@@ -144,7 +144,7 @@ class Htgl(unittest.TestCase):
                 "name":"test合同01",
                 "a_category":"personal",
                 "b_category":"personal",
-                "attachment":"[{\"userId\":16,\"userName\":\"冯加刚\",\"uid\":\"14713312054055167364821866588737\",\"size\":2908.71,\"name\":\"打印机指引.pdf\",\"type\":\"application/pdf\",\"status\":\"done\",\"url\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/%E6%89%93%E5%8D%B0%E6%9C%BA%E6%8C%87%E5%BC%951642476841537.pdf\",\"key\":\"/ZZDS/打印机指引1642476841537.pdf\",\"rename\":\"打印机指引1642476841537.pdf\",\"extName\":\"pdf\",\"thumbnailUrl\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/%E6%89%93%E5%8D%B0%E6%9C%BA%E6%8C%87%E5%BC%951642476841537.pdf\",\"createTime\":\"2022-01-18 11:34:08\"}]",
+                "attachment":"[{\"userId\":16,\"userName\":\"\",\"uid\":\"14713312054055167364821866588737\",\"size\":2908.71,\"name\":\"打印机指引.pdf\",\"type\":\"application/pdf\",\"status\":\"done\",\"url\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/%E6%89%93%E5%8D%B0%E6%9C%BA%E6%8C%87%E5%BC%951642476841537.pdf\",\"key\":\"/ZZDS/打印机指引1642476841537.pdf\",\"rename\":\"打印机指引1642476841537.pdf\",\"extName\":\"pdf\",\"thumbnailUrl\":\"http://test-scf-cos-1300889962.cos.ap-guangzhou.myqcloud.com/ZZDS/%E6%89%93%E5%8D%B0%E6%9C%BA%E6%8C%87%E5%BC%951642476841537.pdf\",\"createTime\":\"2022-01-18 11:34:08\"}]",
                 "storage":"",
                 "application_ids":[
                     286

@@ -37,6 +37,7 @@ class HandleDb:
         self.cur.close()
         self.conn.close()
 
+
 postgresql = HandleDb()
 
 

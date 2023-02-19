@@ -7,6 +7,7 @@ from api.login_session import LoginSess
 from test_tools.handle_log import Log
 from conf.readConf import HandleIni
 
+
 class Xtsz(unittest.TestCase):
 
     def setUp(self):
@@ -34,19 +35,15 @@ class Xtsz(unittest.TestCase):
         r_id = jsonpath.jsonpath(res_json,"$..id")
         return r_id
 
-
     def test_yhgl_detail(self):
         api_url = "/web/api/ui/views?view=res_users_185&action=res_user&res_ids={}".format(self.test_yhgl())
         url = self.HandleIni.host_url() + api_url
         res = self.sses.login().get(url=url)
         self.assertEqual(200,res.status_code,True)
 
-
     # 角色管理
 
-
     # 组织架构
-
 
     # 消息通知
     def test_xxtz(self):
@@ -82,7 +79,6 @@ class Xtsz(unittest.TestCase):
         res = self.sses.login().post(url=url,json=data)
         self.assertEqual(200,res.status_code,True)
 
-
     def test_shenhe(self):
         """审核"""
         api_url = "/web/call/message_approve_for_lumi_ui_message"
@@ -100,6 +96,7 @@ class Xtsz(unittest.TestCase):
 
         res = self.sses.login().post(url=url, json=data)
         self.assertEqual(200, res.status_code, True)
+
 
 if __name__=="__main__":
     unittest.main()

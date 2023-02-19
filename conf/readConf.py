@@ -1,8 +1,9 @@
 import os
-import configparser    #python3
+import configparser    # python3
 
 cur_path = os.path.dirname(os.path.realpath(__file__))
 configPath = os.path.join(cur_path, "cfg.ini")      # 绝对路径
+
 
 class HandleIni:
 

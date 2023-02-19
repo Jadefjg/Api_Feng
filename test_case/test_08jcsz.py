@@ -6,6 +6,7 @@ from api.login_session import LoginSess
 from test_tools.handle_log import Log
 from conf.readConf import HandleIni
 
+
 class jcpz(unittest.TestCase):
 
     def setUp(self):

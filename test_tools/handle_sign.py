@@ -25,6 +25,7 @@ class HandleSign:
         sign = cls.encrypt(message)                 # 生成sign
         return {"timestamp":timestamp,"sign":sign}
 
+
 if __name__== '__main__':
     # token = ""
     # cryto_info = HandleSign.generate_sign(token)

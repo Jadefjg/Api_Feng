@@ -3,16 +3,16 @@
 import jsonpath
 import unittest
 
-from api.login_session import LoginSession
+from api.login_session import LoginSess
 from conf.readConf import HandleIni
 
 
-host_url = 'http://zzds.pythontest.aqara.com'
+host_url = ''
 
 class zsgl(unittest.TestCase):
 
     def setUp(self, *args, **kw):
-        self.sess = LoginSession()
+        self.sess = LoginSess()
         self.HandleIni = HandleIni()
 
     def tearDown(self):
@@ -29,7 +29,7 @@ class zsgl(unittest.TestCase):
 
     # 招商管理 - 招商信息：新增、查询
     def test_creat_zs(self):
-        api_url = '/web/api/shang-join-information'
+        api_url = ''
         url = self.host_url + api_url
         data ={
             "name": "AutoApiTest00004",      # 改下名字序号，逐次递增

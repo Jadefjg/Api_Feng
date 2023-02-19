@@ -3,7 +3,7 @@
 import unittest
 import jsonpath
 
-from api.login_session import LoginSession
+from api.login_session import LoginSess
 from test_tools.handle_log import Log
 from conf.readConf import HandleIni
 
@@ -12,7 +12,7 @@ from conf.readConf import HandleIni
 class sjgl_sjxx(unittest.TestCase):
 
     def setUp(self, *args, **kw):
-        self.sess = LoginSession()
+        self.sess = LoginSess()
         self.log = Log()
         self.HandleIni = HandleIni()
 
@@ -61,6 +61,7 @@ class sjgl_sjxx(unittest.TestCase):
         r_status_code = resp.status_code
         print(r_status_code)
         self.assertEqual(200,r_status_code,True)
+
 
 if __name__=="__main__":
     unittest.main()

@@ -7,7 +7,7 @@ import ast
 import unittest
 from ddt import ddt,data
 
-from test_tools.handle_log import test_log
+from test_tools.handle_log import Log
 from test_tools.handle_db import postgresql
 from test_tools.handle_excel import HandleExcel
 from test_tools.handle_path import case_data_dir
@@ -80,5 +80,5 @@ class TestAll(unittest.TestCase):
                 second_result = float(second_result[0])
                 self.assertEqual(100,first_result - second_result)
         except Exception as e:
-            test_log.exception(e)
+            Log.exception(e)
             raise AssertionError

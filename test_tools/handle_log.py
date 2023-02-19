@@ -31,6 +31,6 @@ def handle_log(name):
     return test_log
 
 # 使用项目名称
-test_log = handle_log(name="test_log")
+Log = handle_log(name="test_log")
 
-test_log.info(msg="test")
+Log.info(msg="test")

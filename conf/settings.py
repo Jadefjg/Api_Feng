@@ -24,6 +24,6 @@ replace_data={
 
 # 域名
 host = {
-    "domain":"http://zzds.pythontest.aqara.com"
+    "domain":""
 }
 
