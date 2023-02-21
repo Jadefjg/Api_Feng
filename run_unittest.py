@@ -25,8 +25,8 @@ runner.run()
 # 调试代码期间注释该代码，以免频繁的发邮件给用户造成困扰。发布时候要取消注释
 # runner.send_email(host="smtp.163.com",
 #                   port=465,
-#                   user="fjgjiagang@163.com",
-#                   password="UGMMRZNAEAMCTFMG",
-#                   to_addrs="2513635177@qq.com"
+#                   user="",
+#                   password="",
+#                   to_addrs=""
 #                   )
 
