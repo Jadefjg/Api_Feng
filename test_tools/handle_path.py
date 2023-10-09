@@ -21,4 +21,4 @@ log_dir = os.path.join(base_dir,'logs','{}.log'.format(log_file_name))
 # 报告文件路径
 report_dir = os.path.join(base_dir,'reports')
 report_name = time.strftime("%Y%m%d_%H%M%S.html",time.localtime())
-history_report_dir = os.path.join(base_dir,'reports','history')     # 历史报告文件路径
+history_report_dir = os.path.join(base_dir,'reports','history') # 历史报告文件路径

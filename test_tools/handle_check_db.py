@@ -258,11 +258,7 @@ class HandleCheckDb:
             Log.exception(e)
             raise AssertionError
 
-
-
-
-
-    # # 数据库断言
+    # 数据库断言
     # def check_db(self,check_db,replace_data):
     #     if check_db:
     #         # 执行表达式，转换为 python 对象(dict)

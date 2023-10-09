@@ -2,17 +2,47 @@
 
 import re
 import ast
+from decimal import Decimal
 
+from test_tools.handle_ini import conf
 from conf.settings import replace_data
 from test_tools.handle_db import postgresql
 from test_tools.handle_phone import HandlePhone     # 获取未注册的手机号码
 from test_tools.handle_attribute import HandleAttribute
+from test_tools.handle_log import Log
 
 
 class HandleReplace:
 
     def __init__(self):
         self.handle_phone = HandlePhone()
+
+    def __get_phone_by_script(self, key):
+        # 脚本生成未注册过的手机号，并设置为类属性
+        phone = self.handle_phone.get_phone()
+        self.__set_attribute(key=key, val=phone)
+
+    def __get_data_by_config(self, key):
+        # 从配置文件读取数据，并设置为类属性
+        data = conf.get(section=key, option=key)
+        self.__set_attribute(key=key, val=data)
+
+    def __get_data_by_db(self, key, sql):
+        """
+            数据库查询数据，将查询结果设置为类属性
+            :param key:
+                   type=str
+                   类属性的key名称
+            :param sql:
+                   type=str
+                   sql语句，只支持一条数据
+                       select mobile_phone from member where mobile_phone=18820992515
+            :return:无返回,这里还要看一下是否兼容多个
+        """
+        data = postgresql.get_db_all_data(sql)
+        # 这里数据库查询返回的是字典{id:123456}，这里要取字典的value
+        for val in data[0].values():
+            self.__set_attribute(key=key, val=val)
 
     # 设置类属性
     def __set_attribute(self,key,val):

@@ -6,21 +6,25 @@
 from faker import Faker
 from test_tools.handle_db import postgresql
 
+
 class HandlePhone:
 
     def __init__(self):
         self.fk = Faker(locale="zh-cn")
 
+    # 如果系统对手机号前缀有要求的，要做前缀校验
     def __faker_phone(self):
         phone = self.fk.phone_number()
         return phone
 
+    # 数据库查询结果
     def __select_phone(self,phone):
         # 查询数据库结果
         sql = "select * from shang_join_information where phone = '{}'".format(phone)
         result = postgresql.get_db_all_value_list(sql=sql)
         return result
 
+    # 获取一个未注册的手机号
     def get_phone(self):
         while True:
             phone = self.__faker_phone()    # 生成手机号码
