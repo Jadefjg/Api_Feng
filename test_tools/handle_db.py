@@ -1,8 +1,8 @@
-
 """ 操作数据库 """
-
+# import pymysql
 import psycopg2
 from test_tools.handle_ini import conf
+
 
 class HandleDb:
 
@@ -21,7 +21,7 @@ class HandleDb:
         result_list = []
         self.cur.execute(sql)
         result = self.cur.fetchall()
-        #print(result)
+        # print(result)
         for val in result:
             for key,value in val.items():
                 result_list.append(value)
@@ -45,9 +45,6 @@ postgresql = HandleDb()
 #     A = HandleDb()
 #     sql = "select * from shang_join_information"
 #     A.get_db_all_data(sql)
-
-
-
 
 # self.conn = db.connect()  # 建立数据库连接
 # cur = self.conn.cursor()  # 通过获取到的数据库连接conn下的cursor()方法来创建游标。
