@@ -3,10 +3,11 @@ import json
 import requests
 
 from test_tools.handle_ini import conf
-from api.login_session import LoginSession
+from api.login_session import LoginSess
 from test_tools.handle_excel import HandleExcel
 from test_tools.handle_attribute import HandleAttribute
 from test_tools.handle_sign import HandleSign
+from test_tools.handle_log import Log
 
 
 class HandleRequest:
@@ -19,8 +20,8 @@ class HandleRequest:
     """
 
     def __init__(self):
-        self.LoginSesssion = LoginSession()
-        #self.HandleExcel = HandleExcel()
+        self.LoginSesssion = LoginSess()
+        # self.HandleExcel = HandleExcel()
         self.headers = {}
 
     def __handle_headers(self):
@@ -44,6 +45,17 @@ class HandleRequest:
             print("不需要替换请求地址")
             return new_url
 
+    # 请求url拼接
+    def __handle_url(self, url):
+        base_url = conf.get(section='host', option='domain')
+        if url.startswith('http://') or url.startswith('https://'):
+            request_url = url
+        else:
+            request_url = base_url + url
+        # url接口地址中参数替换，从类属性中获取
+        new_url = self.__handle_replace_url(request_url)
+        return new_url
+
     # 请求地址的拼接 + 替换处理
     def __handle_replace_url(self,url):
         base_url = conf.get["host","domain"]
@@ -57,19 +69,37 @@ class HandleRequest:
 
     # 接口版本的版本鉴权
     def __hanlde_media_type(self,request_data):
+        """
+           :param request_data:
+                  :type=dict
+           :return: timestamp+token+sign鉴权方式,返回签名后的请求参数
+        """
         if self.headers[""] == "":
+            Log.info(msg="timestamp+token+sign鉴权方式，开始处理请求参数")
             if hasattr(HandleAttribute,"token"):
                 token = getattr(HandleAttribute,"token")
                 sign_data = HandleSign.generate_sign(token=token)
                 request_data.update(sign_data)
+            else:
+                Log.info(msg="没有token，该接口不需要签名鉴权")
         else:
             print("非V3鉴权方式，不需要处理")
         return request_data
 
     def send_requests(self,method,url,data):
+        """
+            :param method: 请求方法
+            :param url: 请求地址
+            :param data: 请求参数
+            :param token: 鉴权token
+            :return: 返回接口响应结果
+        """
         try:
-            method = method.lower()
-            self.__handle_headers()     # token 处理
+            Log.info(msg='请求方式:\n{}'.format(method))
+            Log.info(msg='请求地址:\n{}'.format(url))
+            Log.info(msg='请求参数：\n{}'.format(data))
+            method = method.upper()
+            self.__handle_headers()     # 请求头中的token 处理
             # 处理请求地址
             url = self.__handle_replace_url(url=url)
             # 处理版本鉴权
